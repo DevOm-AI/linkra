@@ -14,7 +14,15 @@ if DATABASE_URL is None:
     raise ValueError("DATABASE_URL not found in .env file!")
 
 # 2. Initialize SQLAlchemy Engine
-engine = create_engine(DATABASE_URL)
+# Update the engine creation with pool settings
+engine = create_engine(
+    DATABASE_URL,
+    pool_size=20,        # Increase base connections from 5 to 20
+    max_overflow=30,     # Allow up to 30 additional "emergency" connections
+    pool_timeout=60,     # Wait longer before giving up on a connection
+    pool_recycle=3600    # Refresh connections every hour
+)
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()

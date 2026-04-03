@@ -7,5 +7,5 @@ app = FastAPI(title="Linkra API")
 app.include_router(links.router)
 
 @app.get("/")
-def health_check():
+async def health_check():
     return {"status": "Linkra is live"}

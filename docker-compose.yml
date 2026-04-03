@@ -14,5 +14,25 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  # --- NEW REDIS SERVICE ---
+  redis:
+    image: redis:7-alpine
+    container_name: linkra_redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+
+  consumer:
+      build: ./consumer
+      container_name: linkra_consumer
+      # This block OVERRIDES whatever is in your .env for the container
+      environment:
+        - REDIS_URL=redis://redis:6379/0
+        - DATABASE_URL=postgresql://user:password@db:5432/linkra
+      depends_on:
+        - redis
+        - db
+
 volumes:
   postgres_data:

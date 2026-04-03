@@ -1,19 +1,22 @@
+import os
 from logging.config import fileConfig
-
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-
+from sqlalchemy import engine_from_config, pool
 from alembic import context
+from dotenv import load_dotenv  # Add this import
+from app.database import Base  # Import your SQLAlchemy Base
 
-from app.database import Base
-from app.models.url import URL
+from app.models import Click  # Import your models to ensure they are registered with the Base
 
-# this is the Alembic Config object, which provides
-# access to the values within the .ini file in use.
+# Load your .env file
+load_dotenv()
+
+# this is the Alembic Config object
 config = context.config
 
-# Interpret the config file for Python logging.
-# This line sets up loggers basically.
+# --- ADD THIS LINE TO SYNC YOUR DATABASE URL ---
+config.set_main_option("sqlalchemy.url", os.getenv("DATABASE_URL"))
+
+# Interpret the config file for Python logging
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
