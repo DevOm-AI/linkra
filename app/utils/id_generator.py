@@ -70,3 +70,13 @@ generator = SnowflakeGenerator(machine_id=1)
 def generate_short_code() -> str:
     snowflake_id = generator.generate()
     return encode_base62(snowflake_id)
+
+
+
+# Create one instance of the generator to be used everywhere
+# machine_id=1 is fine for now
+_generator = SnowflakeGenerator(machine_id=1)
+
+def generate_snowflake_id() -> int:
+    """Helper function to get a numeric Snowflake ID"""
+    return _generator.generate()
