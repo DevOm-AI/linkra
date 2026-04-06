@@ -33,6 +33,7 @@ class Click(Base):
     device_type = Column(String, default="Desktop")
     browser = Column(String, default="Unknown")
     referrer = Column(String, default="Direct")
+    link_id = Column(BigInteger, ForeignKey("urls.id"))
 
 
 
