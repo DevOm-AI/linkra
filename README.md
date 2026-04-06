@@ -85,8 +85,8 @@ Linkra 2.0 provides a comprehensive "Control Tower" for your redirection nodes:
 
 ---
 
-## 📂 Project Organization
-
+## 📁 Project Structure
+```
 📂 linkra
 ├── 🛠️ backend
 │   └── 📂 app
@@ -101,16 +101,17 @@ Linkra 2.0 provides a comprehensive "Control Tower" for your redirection nodes:
 │           ├── 🌍 geo.py       # Async IP Enrichment Service
 │           └── 🛡️ jwt_handler.py # Security & Token Logic
 └── 💻 frontend
-└── 📂 src
-├── 🔌 api
-│   └── 🌐 linkra.js     # Axios-based API Bridge
-├── 📄 pages
-│   ├── 🏠 Dashboard.jsx # Node Management Console
-│   ├── 📈 Analytics.jsx # Global Insights Hub
-│   └── 📝 LinkDetail.jsx # Deep-Dive Activity Logs
-└── 🧱 components
-└── 🧭 Sidebar.jsx    # Technical Control Tower
-` ``
+    └── 📂 src
+        ├── 🔌 api
+        │   └── 🌐 linkra.js     # Axios-based API Bridge
+        ├── 📄 pages
+        │   ├── 🏠 Dashboard.jsx # Node Management Console
+        │   ├── 📈 Analytics.jsx # Global Insights Hub
+        │   └── 📝 LinkDetail.jsx # Deep-Dive Activity Logs
+        └── 🧱 components
+            └── 🧭 Sidebar.jsx    # Technical Control Tower
+```
+
 
 ---
 
