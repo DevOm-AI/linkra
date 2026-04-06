@@ -87,20 +87,30 @@ Linkra 2.0 provides a comprehensive "Control Tower" for your redirection nodes:
 
 ## 📂 Project Organization
 
-```mermaid
-graph TD
-    A[User Request] --> B{L1: Redis Cache}
-    B -- Hit (< 5ms) --> C[307 Redirect]
-    B -- Miss --> D[L2: PostgreSQL Query]
-    D --> E[Populate Redis]
-    E --> C
-    C --> F[Async Sidecar Task]
-    subgraph Analytics Engine
-        F --> G[Extract User-Agent]
-        F --> H[IP Geo-Enrichment]
-        F --> I[Timestamp Localization]
-        G & H & I --> J[(Click Persistence)]
-    end
+📂 linkra
+├── 🛠️ backend
+│   └── 📂 app
+│       ├── 📜 main.py          # Core Redirection Gateway & Middleware
+│       ├── 📜 models.py        # Relational Mapping (URL, Click, User)
+│       ├── 📜 database.py      # Connection Pooling & Session Management
+│       ├── 📂 routes
+│       │   ├── 🔑 auth.py      # JWT Login & Registration
+│       │   ├── 🔗 links.py      # CRUD Operations for Redirection Nodes
+│       │   └── 📊 analytics.py  # Data Aggregation & Chart Logic
+│       └── 📂 utils
+│           ├── 🌍 geo.py       # Async IP Enrichment Service
+│           └── 🛡️ jwt_handler.py # Security & Token Logic
+└── 💻 frontend
+└── 📂 src
+├── 🔌 api
+│   └── 🌐 linkra.js     # Axios-based API Bridge
+├── 📄 pages
+│   ├── 🏠 Dashboard.jsx # Node Management Console
+│   ├── 📈 Analytics.jsx # Global Insights Hub
+│   └── 📝 LinkDetail.jsx # Deep-Dive Activity Logs
+└── 🧱 components
+└── 🧭 Sidebar.jsx    # Technical Control Tower
+` ``
 
 ---
 
