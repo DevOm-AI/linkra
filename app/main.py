@@ -22,11 +22,15 @@ class BigIntEncoder(JSONEncoder):
             return str(obj)
         return super().default(obj)
 
+origins = [
+    "https://linkra-seven.vercel.app",
+    "http://localhost:5173",  # Keep this for your local Pune dev environment
+]
 
 app = FastAPI(title="Linkra API", default_response_class=JSONResponse)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://linkra-seven.vercel.app/"], 
+    allow_origins=origins, 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
