@@ -9,8 +9,6 @@
 Access the **Linkra Production Hub** here:
 👉 **[linkra-seven.vercel.app](https://linkra-seven.vercel.app)**
 
----
-*Status: Systems Online // Pune Distribution Hub*
 
 ---
 
