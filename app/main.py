@@ -26,7 +26,7 @@ class BigIntEncoder(JSONEncoder):
 app = FastAPI(title="Linkra API", default_response_class=JSONResponse)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], 
+    allow_origins=["https://linkra-seven.vercel.app/"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
