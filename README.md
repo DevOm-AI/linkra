@@ -115,6 +115,31 @@ Linkra 2.0 provides a comprehensive "Control Tower" for your redirection nodes:
 
 ---
 
+
+## 🌍 Deployment: The Distributed Cloud Strategy
+
+Linkra utilizes a globally distributed infrastructure to minimize latency and ensure high availability. The system is architected to leverage specialized cloud providers for each layer of the stack, optimized for the South Asia region.
+
+### 1. Database & Cache (The Data Tier)
+* **Supabase (PostgreSQL):** Hosted in the **AWS Mumbai (ap-south-1)** region. This provides the relational foundation with minimal geographical latency for the Pune distribution hub.
+* **Upstash (Redis):** Deployed as a serverless Redis cluster with **TCP/TLS** protocol support. This ensures persistent, high-speed connections for the L1 redirection cache.
+
+### 2. Backend Engine (The Logic Tier)
+* **Render:** The FastAPI application is deployed as a managed Web Service.
+* **Configuration:** * **Port Binding:** Dynamically binds to the Render environment via the `$PORT` variable.
+    * **Environment Variables:** Securely injects `DATABASE_URL` (PostgreSQL), `REDIS_URL` (TCP), and `JWT_SECRET` for production security.
+    * **Dependency Management:** Uses pinned versions (e.g., `bcrypt==4.0.1`) to ensure stability across Linux-based build environments.
+
+### 3. Frontend Cockpit (The Presentation Tier)
+* **Vercel:** The React frontend is deployed as a high-performance static application.
+* **Build Orchestration:**
+    * **Root Directory:** Configured to the `/frontend` directory to isolate the Vite build process from the backend logic.
+    * **SPA Routing:** Implements a `vercel.json` rewrite configuration to ensure client-side routes like `/dashboard` and `/analytics` resolve correctly on page refresh.
+    * **Environment Injection:** The `VITE_API_BASE_URL` is injected at build-time to establish a secure handshake with the live Render API.
+
+
+---
+
 ## 🚀 The Road to Production
 
 Linkra is architected for **Horizontal Scalability**. By utilizing **Stateless JWT Authentication**, the backend can be replicated across multiple nodes without the complexities of session-synchronization, allowing for seamless load balancing in a production environment.
