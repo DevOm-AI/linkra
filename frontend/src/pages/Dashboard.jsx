@@ -126,7 +126,7 @@ const Dashboard = () => {
                                 </Link>
 
                                 <a 
-                                    href={`http://localhost:8000/${link.short_code}`} 
+                                    href={`${import.meta.env.VITE_API_BASE_URL}/${link.short_code}`} 
                                     target="_blank" 
                                     rel="noreferrer"
                                     className="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all"
