@@ -8,3 +8,5 @@ pydantic-settings
 python-dotenv
 redis
 httpx
+python-jose[cryptography]
+passlib[bcrypt]
